@@ -1,0 +1,26 @@
+type Recipe {
+    id: ID!
+    title: String!
+    ingredients: [String!]!
+    cookingTime: Int!          # Calculate by minutes
+    tags: [String!]!           # Ex ["Keto", "Vegan", "Low-Carb"]
+    safetyAnalysis: SafetyReport  # LLM analysis is based on pathology/allergy
+}
+
+type SafetyReport {
+  safetyScore: Int!          # Rating scale is from 1-10 (10 being extremely safe).
+  riskLevel: String!         # LOW, MEDIUM, HIGH
+  allergensDetected: [String!]! # Detected allergens (such as peanuts, seafood)
+  medicalWarnings: [String!]!   # Medical warnings (e.g., "High blood sugar", "High blood pressure")
+  aiExplanation: String!     # LLM explains the reasoning behind recommendations and trustworthiness
+}
+
+type Query {
+  # Get suggestions for safe meals based on preferences and health condition.
+  getSecureRecommendations(
+    preferences: [String!], 
+    healthConditions: [String!]
+  ): [Recipe!]!
+  
+  getRecipeDetails(id: ID!): Recipe
+}
