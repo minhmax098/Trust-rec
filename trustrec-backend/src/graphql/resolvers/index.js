@@ -13,6 +13,9 @@ const resolvers = {
           params.push(preferences);
         }
 
+        // Limit results to 5 to avoid Gemini AI Rate Limit in Demo
+        queryText += ' LIMIT 5';
+
         const res = await db.query(queryText, params);
 
         // Data conversion and parallel AI activation for each dish.
