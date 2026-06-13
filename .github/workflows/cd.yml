@@ -8,9 +8,9 @@ jobs:
   deploy:
     name: Dummy Deploy for Demo
     runs-on: ubuntu-latest
-    needs: [build-and-test] # Giả lập cần chạy CI trước
-    # Trong môi trường thực tế, nếu dùng Vercel/Render có thể setup deploy tự động qua Github Integration.
-    # Workflow này là minh họa để Giáo sư thấy bạn có tư duy CD (Continuous Deployment)
+    needs: [build-and-test] # Need to run CI first.
+    # Reality environment, if using Vercel/Render, can set up automatic deployment via Github Integration.
+    # Workflow for Continuous Deployment
     steps:
       - name: Echo deployment message
         run: |
